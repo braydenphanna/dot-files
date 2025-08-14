@@ -22,7 +22,7 @@ battery(){
 	printf "^c$white^ 0"
 }
 clock(){
-	printf "^c$white^󰥔 $(date '+%H:%M')"
+	printf "^c$white^󰥔 $(date '+%-I:%M')"
 }
 
 while true; do
