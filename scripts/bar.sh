@@ -1,6 +1,6 @@
 
 black=#121212
-blue=#98CBE3
+white=#FCFCFC
 red=#E63C1A
 green=#88CF8B
 orange=#F7A639
@@ -9,20 +9,21 @@ battery(){
 	capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
 	charging="$(cat /sys/class/power_supply/AC/online)"
 	if [ $charging -eq 1 ]; then
-		printf "^c$orange^^b$black^ $capacity"
+		printf "^c$orange^$capacity%%"
 	else
 		if [ $capacity -lt 20 ]; then
-			printf "^c$red^^b$black^ $capacity"
+			printf "^c$red^$capacity%%"
 		else
-			printf "^c$green^^b$black^ $capacity"
+			printf "^c$green^$capacity%%"
 		fi
 	fi
+
+	printf "^c$white^ 0%%"
 }
 clock(){
-	printf "^c$black^^b$blue^ O "
-	printf "^c$blue^^b$black^ $(date '+%H:%M') "
+	printf "^c$white^$(date '+%H:%M') "
 }
 
 while true; do
-	sleep 1 && xsetroot -name "$(battery) $(clock)"
+	sleep 1 && xsetroot -name " $(battery) $(clock)"
 done
