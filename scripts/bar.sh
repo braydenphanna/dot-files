@@ -7,8 +7,8 @@ orange=#F7A639
 
 wifi(){
 	case "$(cat /sys/class/net/enp0s3/operstate 2>/dev/null)" in
-	up) printf "" ;;
-	down) printf "" ;;
+	up) printf " connected" ;;
+	down) printf " disconnected" ;;
 	esac
 }
 
@@ -41,6 +41,6 @@ clock(){
 }
 
 while true; do
-	sleep 1 && xsetroot -name " $(wifi) $(volume) $(brightness) $(battery) $(clock) "
+	sleep 1 && xsetroot -name " $(volume) $(brightness) $(wifi) $(battery) $(clock) "
 done
 
